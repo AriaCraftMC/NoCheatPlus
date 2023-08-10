@@ -58,8 +58,6 @@ import fr.neatmonster.nocheatplus.actions.ActionFactoryFactory;
 import fr.neatmonster.nocheatplus.checks.blockbreak.BlockBreakListener;
 import fr.neatmonster.nocheatplus.checks.blockinteract.BlockInteractListener;
 import fr.neatmonster.nocheatplus.checks.blockplace.BlockPlaceListener;
-import fr.neatmonster.nocheatplus.checks.chat.ChatConfig;
-import fr.neatmonster.nocheatplus.checks.chat.ChatListener;
 import fr.neatmonster.nocheatplus.checks.combined.CombinedData;
 import fr.neatmonster.nocheatplus.checks.combined.CombinedListener;
 import fr.neatmonster.nocheatplus.checks.fight.FightListener;
@@ -989,7 +987,6 @@ public class NoCheatPlus extends JavaPlugin implements NoCheatPlusAPI {
                 new BlockInteractListener(),
                 new BlockBreakListener(),
                 new BlockPlaceListener(),
-                new ChatListener(),
                 new CombinedListener(),
                 // Do mind registration order: Combined must come before Fight.
                 new FightListener(),
@@ -1020,7 +1017,6 @@ public class NoCheatPlus extends JavaPlugin implements NoCheatPlusAPI {
         // Tell the permission registry, which permissions should get updated.
         // TODO: confine by check enabled flags.
         permissionRegistry.preferKeepUpdated(NetConfig.getPreferKeepUpdatedPermissions());
-        permissionRegistry.preferKeepUpdated(ChatConfig.getPreferKeepUpdatedPermissions());
         permissionRegistry.arrangePreferKeepUpdated();
 
         ////////////////////////////////
