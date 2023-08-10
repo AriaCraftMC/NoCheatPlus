@@ -240,7 +240,6 @@ public class NoCheatPlus extends JavaPlugin implements NoCheatPlusAPI {
     
     private final ViolationFrequencyHook vlFrequencyHook = new ViolationFrequencyHook();
 
-    private final NCPDragDownHook ncpDragDownHook = new NCPDragDownHook();
 
     /** Block change tracking (pistons, other). */
     private final BlockChangeTracker blockChangeTracker = new BlockChangeTracker();
@@ -1083,6 +1082,7 @@ public class NoCheatPlus extends JavaPlugin implements NoCheatPlusAPI {
         StaticLog.setStreamID(Streams.STATUS);
         // Tell the server administrator that we finished loading NoCheatPlus now.
         logManager.info(Streams.INIT, "Version " + getDescription().getVersion() + " is enabled.");
+        new NCPDragDownHook();
     }
 
     /**
