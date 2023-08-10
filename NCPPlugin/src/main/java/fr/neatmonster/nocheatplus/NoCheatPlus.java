@@ -30,6 +30,7 @@ import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
 
+import fr.neatmonster.nocheatplus.hooks.ncpdragdown.NCPDragDownHook;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -238,6 +239,8 @@ public class NoCheatPlus extends JavaPlugin implements NoCheatPlusAPI {
     private final AllViolationsHook allViolationsHook = new AllViolationsHook();
     
     private final ViolationFrequencyHook vlFrequencyHook = new ViolationFrequencyHook();
+
+    private final NCPDragDownHook ncpDragDownHook = new NCPDragDownHook();
 
     /** Block change tracking (pistons, other). */
     private final BlockChangeTracker blockChangeTracker = new BlockChangeTracker();
