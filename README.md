@@ -4,70 +4,70 @@ NoCheatPlus
 [![Build Status](https://ci.codemc.io/buildStatus/icon?job=Updated-NoCheatPlus%2FUpdated-NoCheatPlus)](https://ci.codemc.io/job/Updated-NoCheatPlus/job/Updated-NoCheatPlus/)
 [![Discord](https://img.shields.io/discord/598285007496151098?label=discord&logo=discord)](https://discord.gg/NASKHYc)
 
-Updated-NoCheatPlus is a continuation of the famous anti-cheat plugin NoCheatPlus, introduced by [NeatMonster](https://github.com/NeatMonster) and [Asofold](https://github.com/asofold) building on the code base of [NoCheat](https://github.com/md-5/NoCheat), created by [Evenprime](https://github.com/Evenprime).
+Updated-NoCheatPlus 是著名反作弊插件 NoCheatPlus 的延续，由 [NeatMonster](https://github.com/NeatMonster) 和 [Asofold](https://github.com/asofold) 在 [Evenprime](https://github.com/Evenprime) 创建的 [NoCheat](https://github.com/md-5/NoCheat) 代码基础上推出。
 
-NoCheatPlus attempts to enforce "vanilla Minecraft" mechanics, as well as preventing players from abusing weaknesses in Minecraft or its protocol, making your server more safe. Organized in different sections, various checks are performed to test players doing, covering a wide range including flying and speeding, fighting hacks, fast block breaking and nukers, inventory hacks, chat spam and other types of malicious behaviour.
+NoCheatPlus 试图执行 "vanilla Minecraft "机制，并防止玩家滥用 Minecraft 或其协议中的弱点，从而使您的服务器更加安全。NoCheatPlus 分为不同部分，执行各种检查以测试玩家的行为，涵盖范围很广，包括飞行和加速、战斗黑客、快速破块和核弹攻击、库存黑客、聊天垃圾和其他类型的恶意行为。
 
 Installation
 ---------
-* [Install a Spigot server](https://github.com/Updated-NoCheatPlus/NoCheatPlus/#obtain-a-build-of-spigot)
-* [Download NoCheatPlus](https://github.com/Updated-NoCheatPlus/NoCheatPlus/#download)
-* Drop the NoCheatPlus.jar in to the plugins folder.
-* Start your Spigot/CraftBukkit server. (Using /reload can have unwanted side effects with players still online, but also with complex plugins and cross-plugin dependencies, so we don't recommend it. Usually it should work with NCP.)
+* [安装 Spigot 服务器](https://github.com/Updated-NoCheatPlus/NoCheatPlus/#obtain-a-build-of-spigot)
+* [下载 NoCheatPlus](https://github.com/Updated-NoCheatPlus/NoCheatPlus/#download)
+* 将 NoCheatPlus.jar 放入插件文件夹。
+* 启动 Spigot/CraftBukkit 服务器。(使用 /reload 可能会对仍在线的玩家产生不必要的副作用，同时也会对复杂插件和跨插件依赖性产生影响，因此我们不推荐使用。通常情况下，它应该能与 NCP 配合使用）。
 
-Hints
+提示
 ---------
-* Be sure that your Spigot/CraftBukkit and NoCheatPlus versions match together. The latest version of NCP is compatible with a wide range of CraftBukkit/Spigot versions.
-* Don't use tabs in the config.yml file.
-* Use [ProtocolLib](https://www.spigotmc.org/resources/protocollib.1997/) for full efficiency of the fight checks and other. Using a version of ProtocolLib that is supported by NCP is essential, as otherwise some checks will be disabled.
-* For compatibility with other plugins such as mcMMO, citizens and more check out [CompatNoCheatPlus](https://github.com/Updated-NoCheatPlus/CompatNoCheatPlus).
+* 请确保您的 Spigot/CraftBukkit 和 NoCheatPlus 版本相匹配。最新版本的 NCP 兼容各种 CraftBukkit/Spigot 版本。
+* 不要在 config.yml 文件中使用制表符。
+* 使用 [ProtocolLib](https://www.spigotmc.org/resources/protocollib.1997/)，可充分提高战斗检查和其他检查的效率。使用 NCP 支持的 ProtocolLib 版本至关重要，否则某些检查将失效。
+* 有关与 mcMMO、citizens 等其他插件的兼容性，请查看 [CompatNoCheatPlus](https://github.com/Updated-NoCheatPlus/CompatNoCheatPlus)。
 
-Links
+链接
 ---------
 
-###### Download
+###### 下载
 * [Jenkins (current)](https://ci.codemc.io/job/Updated-NoCheatPlus/job/Updated-NoCheatPlus/)
 * [BukkitDev (legacy)](https://dev.bukkit.org/projects/nocheatplus/files/)
 * [SpigotMC (legacy)](https://www.spigotmc.org/resources/nocheatplus2015-07-25.26/updates)
 * [Jenkins (legacy)](https://ci.md-5.net/job/NoCheatPlus/)
 
-###### Support and Documentation
+###### 支持和文档
 * [Issues/Tickets](https://github.com/Updated-NoCheatPlus/NoCheatPlus/issues)
 * [Wiki](https://github.com/Updated-NoCheatPlus/Docs)
 * [Configuration](https://github.com/Updated-NoCheatPlus/Docs#configuration)
 * [Permissions](https://github.com/Updated-NoCheatPlus/Docs/blob/master/Settings/Permissions.md)
 * [Commands](https://github.com/Updated-NoCheatPlus/Docs/blob/master/Settings/Commands.md)
 
-###### Developers
+###### 开发人员
 * [License (GPLv3)](https://github.com/Updated-NoCheatPlus/NoCheatPlus/blob/master/LICENSE.txt)
 * [API](https://github.com/Updated-NoCheatPlus/Docs/blob/master/Development/API.md)
 * [Contribute](https://github.com/Updated-NoCheatPlus/NoCheatPlus/blob/master/CONTRIBUTING.md)
 
-###### Related Plugins
+###### 相关插件
 * [ProtocolLib](https://www.spigotmc.org/resources/protocollib.1997/)
 * [CompatNoCheatPlus](https://dev.bukkit.org/projects/compatnocheatplus-cncp/)
 
-###### Obtain a build of Spigot
-* [Get the latest BuildTools.jar](https://hub.spigotmc.org/jenkins/job/BuildTools/)
-* [Run according to instructions](https://www.spigotmc.org/wiki/buildtools/)
-* ([Server installation instructions](https://www.spigotmc.org/wiki/spigot-installation/))
+###### 获得 Spigot 的构建
+* [获取最新的 BuildTools.jar](https://hub.spigotmc.org/jenkins/job/BuildTools/)
+* [按照说明运行](https://www.spigotmc.org/wiki/buildtools/)
+* ([服务器安装说明](https://www.spigotmc.org/wiki/spigot-installation/))
 
 Compiling NoCheatPlus
 ---------
-* We use [Maven](http://maven.apache.org/download.cgi) 3 to handle the dependencies. Tested both with Eclipse and Jenkins is Maven 3.3.9.
-* You can compile with this Maven goal: `mvn clean package`, for a build without any of the "non free" modules, which depened on not publicly downloadable resources, such as the CraftBukkit/Spigot server jar - the reflection based compatibility module is still contained. 
-* To also (re-) build "non free" compatibility modules, use `-P nonfree_build` as well as activating the appropriate module to build via a profile such as `-P cbdev` - see the tables below for reference.
-* For a build with full compatibility modules, You can compile with this goal: `mvn clean package -P nonfree_build -P all`.
-* "Non free" jar file dependencies needed for the dedicated compat modules, which your local maven repository might be missing, can be installed manually.
-Example for Eclipse with embedded maven:
-Add a new maven build run configuration, name it appropriately, e.g. ```Install CB 1.7.5```.
-Set goals to: ```install:install-file -Dfile=<PATH TO JAR> -DgroupId=org.bukkit -DartifactId=craftbukkit -Dversion=1.7.5-R0.1-SNAPSHOT -Dpackaging=jar```
-On Windows the <PATH TO JAR> might look like:  ```X:\...\craftbukkit\3042\craftbukkit-1.7.5-R0.1-20140408.020329-16.jar```
-To let it run you might have to set the base directory, e.g. to ```${workspace_loc}```, it does not seem to have significance.
-Do set the correct version alongside the file name. On newer version of maven, you might do with much simplified goals, because the pom files inside the jars are parsed.
-  * **The latest versions of BuildTools.jar will automatically install the created server jars into the local .m2 repository (e.g. on linux) - provided configuration paths are standard. Thus you don't need to do this manually anymore, if you then build NCP with the specific profile, if you have run BuildTools.jar to generate the server jars on that machine/environment.**
+* 我们使用 [Maven](http://maven.apache.org/download.cgi) 3 处理依赖关系。经 Eclipse 和 Jenkins 测试，我们使用的是 Maven 3.3.9。
+* 你可以使用以下 Maven 目标进行编译："mvn clean package"，以编译不依赖于非公开下载资源的任何 "非免费 "模块，如 CraftBukkit/Spigot 服务器 jar - 基于反射的兼容性模块仍然包含在内。
+* 要（重新）构建 "非免费 "兼容模块，请使用 `-P nonfree_build`，并通过配置文件（如 `-P cbdev`）激活相应模块以进行构建--请参阅下表。
+* 要编译完全兼容的模块，可以使用以下目标：`mvn clean package -P nonfree_build -P all`。
+* 可以手动安装专用兼容模块所需的 "非免费 "jar 文件依赖项，因为本地 maven 资源库可能缺少这些依赖项。
+嵌入了 maven 的 Eclipse 示例：
+添加一个新的 maven 构建运行配置，并适当命名，例如```安装 CB 1.7.5```。
+将目标设置为 ``install:install-file -Dfile=<PATH TO JAR> -DgroupId=org.bukkit -DartifactId=craftbukkit -Dversion=1.7.5-R0.1-SNAPSHOT -Dpackaging=jar```.
+在 Windows 上，<PATH TO JAR> 可能看起来像这样：  ```X:\...\craftbukkit\3042\craftbukkit-1.7.5-R0.1-20140408.020329-16.jar```
+为了让它运行，您可能需要设置基本目录，例如```${workspace_loc}```，但这似乎并不重要。
+请在文件名旁设置正确的版本。在较新版本的 maven 中，目标可能会简化很多，因为 jar 中的 pom 文件会被解析。
+  * 最新版本的 BuildTools.jar 会自动将创建的服务器 jar 安装到本地 .m2 资源库（例如 linux 上），前提是配置路径是标准的。因此，如果您已经运行 BuildTools.jar 在该机器/环境上生成了服务器 jars，那么在使用特定配置文件构建 NCP 时，就无需再手动安装了。
 
-Options and profiles related to enabling/disabling including/building "non free" compatibility modules.
+与启用/禁用包含/构建 "非免费 "兼容模块有关的选项和配置文件。
 
 | Profile | Parameter | Description |
 | :------------------ | :-------------- | :-------------- |
@@ -78,7 +78,7 @@ Profiles for choice of "non free" compatibility modules to build:
 
 | Profile | Description |
 | :------------------ | :-------------- |
-| _none_ | Default build without any of the native access modules, might pose compatibility issues with legacy Minecraft versions. The reflection based module is included here. |
+| _none_ | 默认构建不包含任何本地访问模块，这可能会造成与旧版本 Minecraft 的兼容性问题。这里包含了基于反射的模块。|
 | `-P all` | All compatibility modules. |
 | `-P cbdev` | Spigot 1.12 R1 (MC 1.12-1.12.2). |
 | `-P spigot1_11_r1` | Spigot 1.11 R1 (MC 1.11-1.11.2). |
