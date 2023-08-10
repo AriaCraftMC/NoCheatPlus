@@ -100,10 +100,10 @@ public class ProtocolLibComponent implements IDisableListener, INotifyReload, Jo
     private void register(Plugin plugin) {
         final IWorldDataManager worldMan = NCPAPIProvider.getNoCheatPlusAPI().getWorldDataManager();
         if (!worldMan.isActiveAnywhere(CheckType.NET)) {
-            StaticLog.logInfo("No packet level checks activated.");
+            StaticLog.logInfo("没有激活数据包检测.");
             return;
         }
-        StaticLog.logInfo("Adding packet level hooks for ProtocolLib (MC " + ProtocolLibrary.getProtocolManager().getMinecraftVersion().getVersion() + ")...");
+        StaticLog.logInfo("添加基于 ProtocolLib (MC " + ProtocolLibrary.getProtocolManager().getMinecraftVersion().getVersion() + ") 的数据包检测...");
         //Special purpose.
         if (ConfigManager.isTrueForAnyConfig(ConfPaths.NET + ConfPaths.SUB_DEBUG) || ConfigManager.isTrueForAnyConfig(ConfPaths.CHECKS_DEBUG) ) {
             // (Debug logging. Only activates if debug is set for checks or checks.net, not on the fly.)
@@ -148,11 +148,11 @@ public class ProtocolLibComponent implements IDisableListener, INotifyReload, Jo
             for (PacketAdapter adapter : registeredPacketAdapters) {
                 names.add(adapter.getClass().getSimpleName());
             }
-            StaticLog.logInfo("Available (and activated) packet level hooks: " + StringUtil.join(names, " | "));
+            StaticLog.logInfo("数据包挂钩: " + StringUtil.join(names, " | "));
             NCPAPIProvider.getNoCheatPlusAPI().addFeatureTags("packet-listeners", names);
         } 
         else {
-            StaticLog.logInfo("No packet level hooks activated.");
+            StaticLog.logInfo("没有激活的数据包挂钩.");
         }
     }
 
@@ -168,7 +168,7 @@ public class ProtocolLibComponent implements IDisableListener, INotifyReload, Jo
         } catch (ClassCastException e) {
             t = e;
         }
-        StaticLog.logWarning("Could not register packet level hook: " + name);
+        StaticLog.logWarning("无法注册数据包挂钩: " + name);
         StaticLog.logWarning(t);
     }
 
@@ -179,7 +179,7 @@ public class ProtocolLibComponent implements IDisableListener, INotifyReload, Jo
             ProtocolLibrary.getProtocolManager().addPacketListener(adapter);
             registeredPacketAdapters.add(adapter);
         } catch (Throwable t) {
-            StaticLog.logWarning("Could not register packet level hook: " + clazz.getSimpleName());
+            StaticLog.logWarning("无法注册数据包挂钩: " + clazz.getSimpleName());
             StaticLog.logWarning(t);
             if (t.getCause() != null) {
                 StaticLog.logWarning(t.getCause());
@@ -207,7 +207,7 @@ public class ProtocolLibComponent implements IDisableListener, INotifyReload, Jo
                 protocolManager.removePacketListener(adapter);
                 api.removeComponent(adapter); // Bit heavy, but consistent.
             } catch (Throwable t) {
-                StaticLog.logWarning("Failed to unregister packet level hook: " + adapter.getClass().getName());
+                StaticLog.logWarning("无法注册数据包挂钩: " + adapter.getClass().getName());
             }// TODO Auto-generated method stub
 
         }
@@ -226,9 +226,9 @@ public class ProtocolLibComponent implements IDisableListener, INotifyReload, Jo
                 names.add(adaptern.getClass().getSimpleName());
             }
             api.setFeatureTags("packet-listeners", names);
-            StaticLog.logInfo("Unregistered packet level hook:" + adapter.getClass().getName());
+            StaticLog.logInfo("取消数据包挂钩:" + adapter.getClass().getName());
         } catch (Throwable t) {
-            StaticLog.logWarning("Failed to unregister packet level hook: " + adapter.getClass().getName());
+            StaticLog.logWarning("无法注册数据包挂钩: " + adapter.getClass().getName());
         }
     }
 

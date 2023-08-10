@@ -89,14 +89,14 @@ public class MovingFlying extends BaseAdapter {
         ));
         if (ServerVersion.compareMinecraftVersion("1.17") < 0) {
             types.add(PacketType.Play.Client.FLYING);
-            StaticLog.logInfo("Add listener for legacy PlayInFlying packet.");
+            StaticLog.logInfo("添加旧版飞行检测.");
         } 
         else types.add(PacketType.Play.Client.GROUND);
         // Add confirm teleport.
         // PacketPlayInTeleportAccept
         PacketType confirmType = ProtocolLibComponent.findPacketTypeByName(Protocol.PLAY, Sender.CLIENT, "TeleportAccept");
         if (confirmType != null && ServerVersion.compareMinecraftVersion("1.9") >= 0) {
-            StaticLog.logInfo("Confirm teleport packet available (via name): " + confirmType);
+            StaticLog.logInfo("确认传送包可用: " + confirmType);
             types.add(confirmType);
         }
         return types.toArray(new PacketType[types.size()]);

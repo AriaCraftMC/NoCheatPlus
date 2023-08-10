@@ -1235,7 +1235,7 @@ public class NoCheatPlus extends JavaPlugin implements NoCheatPlusAPI {
         // TODO: Summary event or listener call-back (possibly in another place.).
 
         // Log.
-        logManager.info(Streams.INIT, "McAccess set to: " + mcAccess.getMCVersion() + " / " + mcAccess.getServerVersionTag());
+        logManager.info(Streams.INIT, "客户端兼容模式: " + mcAccess.getMCVersion() + " / " + mcAccess.getServerVersionTag());
 
         return mcAccess;
     }

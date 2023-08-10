@@ -72,13 +72,13 @@ public class VersionCommand extends BaseCommand {
         final List<String> lines = new LinkedList<String>();
         final MCAccess mcAccess = NCPAPIProvider.getNoCheatPlusAPI().getGenericInstance(MCAccess.class);
         lines.addAll(Arrays.asList(new String[]{
-                c3 +""+ c2 + "»Version information«" + c1,
-                c5 +""+ c2 + "Server:" + c1,
+                c3 +""+ c2 + "»版本信息«" + c1,
+                c5 +""+ c2 + "服务端核心:" + c1,
                 c1 + alt(Bukkit.getServer().getVersion()),
-                c1 +""+ c7 + "Detected: " + c1 + alt(ServerVersion.getMinecraftVersion()),
+                c1 +""+ c7 + "服务端版本: " + c1 + alt(ServerVersion.getMinecraftVersion()),
                 c5 +""+ c2 + "NoCheatPlus:" + c1,
-                c1 +""+ c7 + "Plugin: "+ c1 + alt(Bukkit.getPluginManager().getPlugin("NoCheatPlus").getDescription().getVersion()),
-                c1 +""+ c7 +  "MCAccess: " + c1 + alt(mcAccess.getMCVersion() + " / " + mcAccess.getServerVersionTag()),
+                c1 +""+ c7 + "版本: "+ c1 + alt(Bukkit.getPluginManager().getPlugin("NoCheatPlus").getDescription().getVersion()),
+                c1 +""+ c7 +  "客户端兼容版本: " + c1 + alt(mcAccess.getMCVersion() + " / " + mcAccess.getServerVersionTag()),
         }));
 
         final Map<String, Set<String>> featureTags = NCPAPIProvider.getNoCheatPlusAPI().getAllFeatureTags();
@@ -90,7 +90,7 @@ public class VersionCommand extends BaseCommand {
             }
             // Sort and add.
             Collections.sort(features, String.CASE_INSENSITIVE_ORDER);
-            features.add(0, c5 +""+ c2 +"Features:");
+            features.add(0, c5 +""+ c2 +"功能:");
             lines.addAll(features);
         }
 
@@ -101,7 +101,7 @@ public class VersionCommand extends BaseCommand {
                 fullNames.add(alt(hook.getHookName() + " " + hook.getHookVersion()));
             }
             Collections.sort(fullNames, String.CASE_INSENSITIVE_ORDER);
-            lines.add(c5 +""+ c2 + "Hooks:\n" + c1 + StringUtil.join(fullNames, c6 + ", " + c1));
+            lines.add(c5 +""+ c2 + "挂钩:\n" + c1 + StringUtil.join(fullNames, c6 + ", " + c1));
         }
 
         final List<String> relatedPlugins = new LinkedList<String>();
@@ -113,7 +113,7 @@ public class VersionCommand extends BaseCommand {
         }
 
         if (!relatedPlugins.isEmpty()) {
-            lines.add(c3 +""+ c2 + "»Related Plugins«" + c1);
+            lines.add(c3 +""+ c2 + "»关联插件«" + c1);
             lines.add(c1 +""+ StringUtil.join(relatedPlugins, c6 + ", " + c1));
         }
         return lines;

@@ -14,6 +14,11 @@
  */
 package fr.neatmonster.nocheatplus.command.admin.notify;
 
+import fr.neatmonster.nocheatplus.players.DataManager;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.neatmonster.nocheatplus.command.BaseCommand;
@@ -27,11 +32,17 @@ import fr.neatmonster.nocheatplus.permissions.Permissions;
 public class NotifyCommand extends BaseCommand {
 
 	public NotifyCommand(JavaPlugin plugin) {
-		super(plugin, "notify", Permissions.COMMAND_NOTIFY, new String[]{"alert", "alerts"});
-		addSubCommands(
-			new NotifyOffCommand(plugin),
-			new NotifyOnCommand(plugin)
-			);
+		super(plugin, "notify", Permissions.COMMAND_NOTIFY);
 	}
-	
+
+	public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
+		if (DataManager.getPlayerData((Player) sender).getNotifyOff()) {
+			DataManager.getPlayerData((Player) sender).setNotifyOff(false);
+			sender.sendMessage(TAG + "已" + ChatColor.GREEN + " 开启 " + ChatColor.GRAY + "作弊检测通知.");
+		} else {
+			DataManager.getPlayerData((Player) sender).setNotifyOff(true);
+			sender.sendMessage(TAG + "已" + ChatColor.RED + " 关闭 " + ChatColor.GRAY + "作弊检测通知.");
+		}
+		return true;
+	}
 }

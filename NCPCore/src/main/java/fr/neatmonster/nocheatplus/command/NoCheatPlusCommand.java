@@ -25,13 +25,6 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.neatmonster.nocheatplus.command.actions.AllowLoginCommand;
-import fr.neatmonster.nocheatplus.command.actions.BanCommand;
-import fr.neatmonster.nocheatplus.command.actions.DenyListCommand;
-import fr.neatmonster.nocheatplus.command.actions.DenyLoginCommand;
-import fr.neatmonster.nocheatplus.command.actions.KickCommand;
-import fr.neatmonster.nocheatplus.command.actions.TellCommand;
-import fr.neatmonster.nocheatplus.command.actions.delay.DelayCommand;
 import fr.neatmonster.nocheatplus.command.admin.CommandsCommand;
 import fr.neatmonster.nocheatplus.command.admin.InfoCommand;
 import fr.neatmonster.nocheatplus.command.admin.InspectCommand;
@@ -39,7 +32,6 @@ import fr.neatmonster.nocheatplus.command.admin.LagCommand;
 import fr.neatmonster.nocheatplus.command.admin.ReloadCommand;
 import fr.neatmonster.nocheatplus.command.admin.RemovePlayerCommand;
 import fr.neatmonster.nocheatplus.command.admin.VersionCommand;
-import fr.neatmonster.nocheatplus.command.admin.debug.DebugCommand;
 import fr.neatmonster.nocheatplus.command.admin.exemption.ExemptCommand;
 import fr.neatmonster.nocheatplus.command.admin.exemption.ExemptionsCommand;
 import fr.neatmonster.nocheatplus.command.admin.exemption.UnexemptCommand;
@@ -47,7 +39,6 @@ import fr.neatmonster.nocheatplus.command.admin.log.LogCommand;
 import fr.neatmonster.nocheatplus.command.admin.notify.NotifyCommand;
 import fr.neatmonster.nocheatplus.command.admin.reset.ResetCommand;
 import fr.neatmonster.nocheatplus.command.admin.top.TopCommand;
-import fr.neatmonster.nocheatplus.command.testing.stopwatch.StopWatchCommand;
 import fr.neatmonster.nocheatplus.components.registry.feature.INotifyReload;
 import fr.neatmonster.nocheatplus.config.ConfPaths;
 import fr.neatmonster.nocheatplus.config.ConfigFile;
@@ -99,30 +90,20 @@ public class NoCheatPlusCommand extends BaseCommand {
         super(plugin, "nocheatplus", null, new String[]{"ncp"});
         // Register sub commands (special order):
         for (BaseCommand cmd : new BaseCommand[]{
-                new BanCommand(plugin),
                 new CommandsCommand(plugin),
-                new DelayCommand(plugin),
                 new ExemptCommand(plugin),
                 new ExemptionsCommand(plugin),
                 new TopCommand(plugin),
                 new InfoCommand(plugin),
                 new InspectCommand(plugin),
-                new KickCommand(plugin),
-                new DenyListCommand(plugin),
                 new LagCommand(plugin),
                 new VersionCommand(plugin),
                 new NotifyCommand(plugin),
                 new ReloadCommand(plugin, notifyReload),
                 new RemovePlayerCommand(plugin),
-                new TellCommand(plugin),
-                new DenyLoginCommand(plugin),
                 new UnexemptCommand(plugin),
-                new AllowLoginCommand(plugin),
                 new LogCommand(plugin),
                 new ResetCommand(plugin),
-                new DebugCommand(plugin),
-                // Testing:
-                new StopWatchCommand(access),
         }){
             addSubCommands(cmd);
             rootLabels.add(cmd.label);

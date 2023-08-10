@@ -84,7 +84,7 @@ public class TopCommand extends BaseCommand{
                 }
             }
             if (views == null) {
-                sender.sendMessage(TAG + "No history to process.");
+                sender.sendMessage(TAG + "没有历史记录.");
             } else {
                 // Start sorting and result processing asynchronously.
                 final CheckType ct = type;
@@ -131,19 +131,19 @@ public class TopCommand extends BaseCommand{
             Collections.sort(views, comparator);
             // Display.
             final StringBuilder builder = new StringBuilder(100 + 32 * views.size());
-            builder.append((sender instanceof Player ? TAG : CTAG) + "Top results for check: " + c3 + bo +""+ it + checkType.toString().toLowerCase());
+            builder.append((sender instanceof Player ? TAG : CTAG) + "排行结果: " + c3 + bo +""+ it + checkType.toString().toLowerCase());
             int done = 0;
 
             for (final VLView view : views) {
-                builder.append(c1 + "\n• "+ c1 +"Player with top results: " + c2 + view.name);
+                builder.append(c1 + "\n• "+ c1 +"玩家: " + c2 + view.name);
                 // sum
-                builder.append(c1 + "\n• " + c1 + "Sum: " + c2 + format.format(view.sumVL) + c1 + " VLs.");
+                builder.append(c1 + "\n• " + c1 + "总计: " + c2 + format.format(view.sumVL) + c1 + " VLs.");
                 // n
-                builder.append(c1 + "\n• " + c1 + "Triggered: " + c2 + view.nVL + c1 + " times.");
+                builder.append(c1 + "\n• " + c1 + "触发: " + c2 + view.nVL + c1 + " 次.");
                 // avg
-                builder.append(c1 + "\n• " + c1 + "Average: " + c2 + format.format(view.sumVL / view.nVL) + c1 + " VL.");
+                builder.append(c1 + "\n• " + c1 + "平均: " + c2 + format.format(view.sumVL / view.nVL) + c1 + " VL.");
                 // max
-                builder.append(c1 + "\n• " + c1 + "Max: " + c2 + format.format(view.maxVL) + c1 + " VL.");
+                builder.append(c1 + "\n• " + c1 + "最大: " + c2 + format.format(view.maxVL) + c1 + " VL.");
     
                 done ++;
                 if (done >= n) {
@@ -151,10 +151,16 @@ public class TopCommand extends BaseCommand{
                 }
             }
             if (views.isEmpty()) {
-                builder.append((sender instanceof Player ? TAG : CTAG) + "Nothing to display.");
+                builder.append((sender instanceof Player ? TAG : CTAG) + "没有可展示的内容.");
             }
             final String message = builder.toString();
-            Folia.runSyncTask(plugin, (arg) -> sender.sendMessage(message));
+            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        sender.sendMessage(message);
+                    }
+                });
             if (!checkTypes.isEmpty()) {
                 Folia.runSyncTask(plugin, (arg) -> new PrimaryThreadWorker(sender, checkTypes, comparator, n, plugin).run());
             }
@@ -163,14 +169,14 @@ public class TopCommand extends BaseCommand{
 
     public TopCommand(JavaPlugin plugin) {
         super(plugin, "top", Permissions.COMMAND_TOP);
-        this.usage = TAG + "Optional: Specify number of entries to show (once).\nObligatory: Specify check types (multiple possible).\nOptional: Specify what to sort by (multiple possible: -sumvl, -avgvl, -maxvl, -nvl, -name, -time).\nThis is a heavy operation, use with care."; // -check
+        this.usage = TAG + "错误的使用方法."; // -check
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length < 2) {
-            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Bad setup.\nOptional: Specify number of entries to show (once).\nObligatory: Specify check types (multiple possible).\nOptional: Specify what to sort by (multiple possible: -sumvl, -avgvl, -maxvl, -nvl, -name, -time).\nThis is a heavy operation, use with care."); // -check)
+            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "错误的使用方法."); // -check)
             return true;
         }
         int startIndex = 1;
@@ -180,13 +186,13 @@ public class TopCommand extends BaseCommand{
             startIndex = 2;
         } catch (NumberFormatException e) {}
         if (n <= 0) {
-            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Setting number of entries to 10");
+            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "设置条数为 10 .");
             n = 1;
         } else if ((sender instanceof Player) && n > 300) {
-            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Capping number of entries at 300.");
+            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "设置上限为 300 .");
             n = 300;
         } else if  (n > 10000) {
-            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Capping number of entries at 10000.");
+            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "设置上限为 10000 .");
             n = 10000;
         }
         
@@ -201,7 +207,7 @@ public class TopCommand extends BaseCommand{
             }
         }
         if (checkTypes.isEmpty()) {
-            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "No check types specified.");
+            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "没有指定查询类型.");
             return false;
         }
         

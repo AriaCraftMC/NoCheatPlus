@@ -56,11 +56,11 @@ public class UnexemptCommand extends BaseCommand {
 
         // TODO: Reduce copy and paste by introducing some super class.
         if (args.length < 2) {
-            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Please specify a player to unexempt.");
+            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "请指定一个玩家.");
             return true;
         }
         else if (args.length > 3) {
-            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Too many arguments. Command usage: /ncp unexempt (playername) (checktype).");
+            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "用法: /nocheatplus unexempt (玩家) (检测类型).");
             return true;
         }
         String playerName = args[1];
@@ -69,8 +69,8 @@ public class UnexemptCommand extends BaseCommand {
             try{
                 checkType = CheckType.valueOf(args[2].toUpperCase().replace('-', '_').replace('.', '_'));
             } catch (Exception e){
-                sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Could not interpret: " + c3 +""+ args[2]);
-                sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Check type should be one of: " + c3 +""+ StringUtil.join(Arrays.asList(CheckType.values()), c6 + ", " + c3));
+                sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "参数错误: " + c3 +""+ args[2]);
+                sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "类型必须是一个: " + c3 +""+ StringUtil.join(Arrays.asList(CheckType.values()), c6 + ", " + c3));
                 return true;
             }
         }
@@ -79,7 +79,7 @@ public class UnexemptCommand extends BaseCommand {
             // Unexempt all.
             // TODO: might care to find players only ?
             NCPExemptionManager.clear();
-            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Removed exemptions for all players for checks: " + c3 +""+ checkType);
+            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "移除所有玩家对检测项目 " + c3 + checkType +" 的绕过.");
             return true;
         }
         // Find player.
@@ -92,10 +92,10 @@ public class UnexemptCommand extends BaseCommand {
             id = DataManager.getUUID(playerName);
         }
         if (id == null) {
-            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Not an online player nor a UUID: " + c3 +""+ playerName);
+            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "玩家不在线(无效UUID): " + c3 + playerName);
         } else {
             NCPExemptionManager.unexempt(id, checkType);
-            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Remove exemptions for " + c3 +""+ playerName + c1 + " for checks: " + c3 +""+ checkType);
+            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "移除玩家 " + c3 + playerName + c1 + " 对 " + c3 + checkType + c1 + " 检测项目的绕过");
         }
         return true;
     }

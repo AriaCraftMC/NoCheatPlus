@@ -14,21 +14,23 @@
  */
 package fr.neatmonster.nocheatplus.command.admin.log;
 
+import fr.neatmonster.nocheatplus.NCPAPIProvider;
+import fr.neatmonster.nocheatplus.stats.Counters;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.neatmonster.nocheatplus.command.BaseCommand;
-import fr.neatmonster.nocheatplus.command.admin.log.counters.CountersCommand;
-import fr.neatmonster.nocheatplus.command.admin.log.stream.StreamCommand;
 import fr.neatmonster.nocheatplus.permissions.Permissions;
 
 public class LogCommand extends BaseCommand{
 
     public LogCommand(JavaPlugin plugin) {
         super(plugin, "log", Permissions.COMMAND_LOG);
-        addSubCommands(
-                new CountersCommand(plugin),
-                new StreamCommand(plugin)
-                );
     }
-
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
+        sender.sendMessage(NCPAPIProvider.getNoCheatPlusAPI().getGenericInstance(Counters.class).getMergedCountsString(true));
+        return true;
+    }
 }

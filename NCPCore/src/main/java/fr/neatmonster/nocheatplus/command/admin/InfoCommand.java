@@ -40,7 +40,7 @@ public class InfoCommand extends BaseCommand {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (args.length != 2) {
-            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Please specify a player.");
+            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "请指定一个玩家.");
             return true;
         }
 		handleInfoCommand(sender, args[1]);
@@ -74,14 +74,14 @@ public class InfoCommand extends BaseCommand {
     	final ViolationHistory history = ViolationHistory.getHistory(playerName, false);
     	final boolean known = player != null || history != null;
     	if (history == null){
-    		sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "No entries for " + cR + playerName + cG + "'s violations " + ( known? "" : "(exact spelling ?)") + ".");
+    		sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "没有关于" + " " + cR + playerName + cG + " " + "的记录" + ( known? "" : "(检查一下拼写?)") + ".");
     		return;
     	}
     	
         final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         final ViolationLevel[] violations = history.getViolationLevels();
         if (violations.length > 0) {
-            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Displaying " + cR + playerName + cG + "'s violations: ");
+            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "显示 " + cR + playerName + cG + " 的记录: ");
             for (final ViolationLevel violationLevel : violations) {
 
                 final long time = violationLevel.time;
@@ -93,13 +93,13 @@ public class InfoCommand extends BaseCommand {
                 final long avVl  = Math.round(violationLevel.sumVL / (double) violationLevel.nVL);
                 sender.sendMessage(
                     cG + bold +"[" + cG + dateFormat.format(new Date(time)) + bold + "] " + cGO + italicbold + parent + "." + check  
-                    +cG+bold + "\n• "+ cG + "Sum: " + cR + sumVL  + cG + " VLs."
-                    +cG+bold + "\n• "+ cG + "Triggered: " + cR + violationLevel.nVL + cG + " times."
-                    +cG+bold + "\n• "+ cG + "Average: " + cR + avVl + cG + " VL."
-                    +cG+bold + "\n• "+ cG + "Max: " + cR + maxVL + cG + " VL.");
+                    +cG+bold + "\n• "+ cG + "总计: " + cR + sumVL  + cG + " VLs."
+                    +cG+bold + "\n• "+ cG + "触发: " + cR + violationLevel.nVL + cG + " 次."
+                    +cG+bold + "\n• "+ cG + "平均: " + cR + avVl + cG + " VL."
+                    +cG+bold + "\n• "+ cG + "最大: " + cR + maxVL + cG + " VL.");
             }
         } 
-        else sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "No violations to display for player " + cR + playerName);
+        else sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "没有关于玩家 " + cR + playerName +cG+" 的记录.");
         
     }
 

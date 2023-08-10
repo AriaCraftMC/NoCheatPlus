@@ -36,7 +36,7 @@ import fr.neatmonster.nocheatplus.utilities.CheckTypeUtil;
 
 /**
  * After-check-failure hook manager integrated into NoCheatPlus.
- * 
+ *
  * @author asofold
  */
 public final class NCPHookManager {
@@ -83,7 +83,7 @@ public final class NCPHookManager {
 
     /**
      * Register a hook for a specific check type (all, group, or an individual check).
-     * 
+     *
      * @param checkType
      *            the check type
      * @param hook
@@ -99,7 +99,7 @@ public final class NCPHookManager {
 
     /**
      * Register a hook for several individual checks ids (all, group, or an individual checks).
-     * 
+     *
      * @param checkTypes
      *            array of check types to register the hook for. If you pass null this hook will be registered for all
      *            checks
@@ -121,7 +121,7 @@ public final class NCPHookManager {
 
     /**
      * Add to the mapping for given check type, no extra actions or recursion.
-     * 
+     *
      * @param checkType
      *            the check type
      * @param hook
@@ -143,7 +143,7 @@ public final class NCPHookManager {
     /**
      * Add hook to the hooksByChecks mappings.<br>
      * Assumes that the hook already has been registered in the allHooks map.
-     * 
+     *
      * @param checkType
      *            the check type
      * @param hook
@@ -157,7 +157,7 @@ public final class NCPHookManager {
 
     /**
      * Call the hooks for the specified check type and player.
-     * 
+     *
      * @param checkType
      *            the check type
      * @param player
@@ -183,7 +183,7 @@ public final class NCPHookManager {
 
     /**
      * Get a collection of all hooks.
-     * 
+     *
      * @return all the hooks
      */
     public static Collection<NCPHook> getAllHooks() {
@@ -194,7 +194,7 @@ public final class NCPHookManager {
 
     /**
      * Get the hook description.
-     * 
+     *
      * @param hook
      *            the hook
      * @return the hook description
@@ -205,7 +205,7 @@ public final class NCPHookManager {
 
     /**
      * Get hooks by their hook name.
-     * 
+     *
      * @param hookName
      *            case sensitive (exact match)
      * @return the collection of NCP hooks matching the hook name
@@ -223,7 +223,7 @@ public final class NCPHookManager {
 
     /**
      * For registration purposes only.
-     * 
+     *
      * @param hook
      *            the hook
      * @return unique id associated with that hook (returns an existing id if hook is already present)
@@ -248,7 +248,7 @@ public final class NCPHookManager {
 
     /**
      * Gets the new hook id.
-     * 
+     *
      * @return the new hook id
      */
     private static Integer getNewHookId() {
@@ -258,24 +258,24 @@ public final class NCPHookManager {
 
     /**
      * Log that a hook was added.
-     * 
+     *
      * @param hook
      *            the hook
      */
     private static final void logHookAdded(final NCPHook hook) {
-        NCPAPIProvider.getNoCheatPlusAPI().getLogManager().info(Streams.STATUS, "Added hook: " + getHookDescription(hook) + ".");
+        NCPAPIProvider.getNoCheatPlusAPI().getLogManager().info(Streams.STATUS, "添加挂钩: " + getHookDescription(hook) + ".");
     }
 
     /**
      * Log that a hook failed.
-     * 
+     *
      * @param checkType
      *            the check type
      * @param player
      *            the player
      * @param hook
      *            the hook
-     * @param throwable
+     * @param t
      *            the throwable
      */
     private static final void logHookFailure(final CheckType checkType, final Player player, final NCPHook hook, final Throwable t) {
@@ -299,17 +299,17 @@ public final class NCPHookManager {
 
     /**
      * Log that a hook was removed.
-     * 
+     *
      * @param hook
      *            the hook
      */
     private static final void logHookRemoved(final NCPHook hook) {
-        NCPAPIProvider.getNoCheatPlusAPI().getLogManager().info(Streams.STATUS, "Removed hook: " + getHookDescription(hook) + ".");
+        NCPAPIProvider.getNoCheatPlusAPI().getLogManager().info(Streams.STATUS, "取消挂钩: " + getHookDescription(hook) + ".");
     }
 
     /**
      * Removes all the hooks.
-     * 
+     *
      * @return the collection
      */
     public static Collection<NCPHook> removeAllHooks() {
@@ -322,7 +322,7 @@ public final class NCPHookManager {
 
     /**
      * Remove from internal mappings, both allHooks and hooksByChecks.
-     * 
+     *
      * @param hook
      *            the hook
      * @param hookId
@@ -337,7 +337,7 @@ public final class NCPHookManager {
 
     /**
      * Remove a hook by its hook id (returned on adding hooks).
-     * 
+     *
      * @param hookId
      *            if present, null otherwise
      * @return the NCP hook
@@ -354,7 +354,7 @@ public final class NCPHookManager {
 
     /**
      * Remove a hook.
-     * 
+     *
      * @param hook
      *            the hook
      * @return hook id if present, null otherwise
@@ -376,7 +376,7 @@ public final class NCPHookManager {
 
     /**
      * Remove a collection of hooks.
-     * 
+     *
      * @param hooks
      *            the hooks
      * @return a set of the removed hooks ids, same order as the given collection (hooks).
@@ -394,7 +394,7 @@ public final class NCPHookManager {
 
     /**
      * Remove hooks by their name (case sensitive, exact match).
-     * 
+     *
      * @param hookName
      *            the hook name
      * @return the collection of NCP hooks removed
@@ -410,10 +410,8 @@ public final class NCPHookManager {
 
     /**
      * This is called by checks when players fail them.
-     * 
-     * @param checkType
-     *            the check type
-     * @param player
+     *
+     * @param violationData
      *            the player that fails the check
      * @return if we should cancel the VL processing
      */
@@ -431,7 +429,7 @@ public final class NCPHookManager {
             else{
                 return applyHooks(type, violationData.player, violationData, hooksCheck);
             }
-        }   
+        }
         return false;
     }
 }

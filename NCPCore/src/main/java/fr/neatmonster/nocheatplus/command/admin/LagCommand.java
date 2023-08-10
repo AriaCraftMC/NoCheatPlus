@@ -44,20 +44,19 @@ public class LagCommand extends BaseCommand {
         else cGO = cR = cG = bO = "";
 
         StringBuilder builder = new StringBuilder(300);
-        builder.append((sender instanceof Player ? TAG : CTAG) + "Displaying lag information...\n");
 
         // Lag spikes.
         long[] spikeDurations = TickTask.getLagSpikeDurations();
         int[] spikes = TickTask.getLagSpikes();
-        builder.append(cR +""+ bO + "»Lag Spikes«\n");  
+        builder.append(cR +""+ bO + "»延迟高峰«\n");
 
         if (spikes[0] == 0){
-            builder.append("No lag spike(s) greater than "+ cGO +""+ spikeDurations[0] + cG +" ms within the last 40 to 60 minutes.");
+            builder.append(cG +"在过去的60分钟内没有延迟高峰.");
         }
         else if (spikes[0] > 0){
 
-            builder.append(cG + "Total spikes: " + cGO +""+ spikes[0] + cG + "\nThere have been some spikes greater than " + cGO +""+ spikeDurations[0] + cG + " ms within the last 40 to 60 minutes.");
-            builder.append("\n" + "Result(s):");
+            builder.append(cG + "总峰数: " + cGO +""+ spikes[0] + cG + "\n这些是"+cGO+ " 60 "+cG+"分钟内峰值大于 " + cGO +""+ spikeDurations[0] + cG + " ms的延迟高峰.");
+            builder.append("\n" + "结果:");
 
             for (int i = 0; i < spikeDurations.length; i++){
                 if (i < spikeDurations.length - 1 && spikes[i] == spikes[i + 1]){
@@ -68,10 +67,10 @@ public class LagCommand extends BaseCommand {
                     continue; // Could be break.
                 }
                 else if (i < spikeDurations.length - 1){
-                    builder.append(cG + "\n• " + cGO +""+ (spikes[i] - spikes[i + 1]) + cG + "spike(s) x " + cGO +""+ cGO +""+ spikeDurations[i] + cG + "ms -> " + cGO +""+ spikeDurations[i + 1] + cG + ". ");
+                    builder.append(cG + "\n• " + cGO +""+ (spikes[i] - spikes[i + 1]) + cG + " 次 " + cGO +""+ cGO +""+ spikeDurations[i] + cG + " ms -> " + cGO +""+ spikeDurations[i + 1] + cG + ". ");
                 }
                 else{
-                    builder.append(cG + "\n• " + cGO +""+ spikes[i] + cG + "spike(s) x " + cGO +""+ cGO +""+ spikeDurations[i] +"ms"+ cG + ".");
+                    builder.append(cG + "\n• " + cGO +""+ spikes[i] + cG + " 次 " + cGO +""+ cGO +""+ spikeDurations[i] +"ms"+ cG + ".");
                 }
             }
         }
@@ -80,11 +79,11 @@ public class LagCommand extends BaseCommand {
         long max = 50L * (1L + TickTask.lagMaxTicks) * TickTask.lagMaxTicks;
         long medium = 50L * TickTask.lagMaxTicks;
         long second = 1200L;
-        builder.append(cR +""+ bO + "»TPS Lag«" + cG + "\n[Perc.][time tracked], 0% = 20 TPS");
+        builder.append(cR +""+ bO + "»TPS 延迟«" + cG + "\n[百分比][追踪时间], 0% = 20 TPS");
         for (long ms : new long[]{second, medium, max}){
             double lag = TickTask.getLag(ms, true);
             int p = Math.max(0, (int) ((lag - 1.0) * 100.0));
-            builder.append(cG + "\n• " + cG + "" + cGO + p + cG + "% tps lag in the last " + cGO +""+ StringUtil.fdec1.format((double) ms / 1200.0) + cG + " second(s). " );
+            builder.append(cG + "\n• 在过去 " + cGO +""+ StringUtil.fdec1.format((double) ms / 1200.0) + cG + " 秒有 " + cGO + p + "%" + cG + " 的 TPS 延迟.");
         }
         // Send message.
         sender.sendMessage(builder.toString());

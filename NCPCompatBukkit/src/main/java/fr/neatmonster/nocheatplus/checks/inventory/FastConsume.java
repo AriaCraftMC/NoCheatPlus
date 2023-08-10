@@ -67,7 +67,7 @@ public class FastConsume extends Check implements Listener, INotifyReload {
         NCPAPIProvider.getNoCheatPlusAPI().getWorldDataManager().overrideCheckActivation(
                 CheckType.INVENTORY_INSTANTEAT, AlmostBoolean.NO, 
                 OverrideType.PERMANENT, true);
-        StaticLog.logInfo("Inventory checks: FastConsume is available, disabled InstantEat.");
+        StaticLog.logInfo("物品栏检测: 快速食用检测项目可用, 禁用快速食用.");
     }
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)

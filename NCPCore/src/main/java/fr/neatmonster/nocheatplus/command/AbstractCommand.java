@@ -39,7 +39,7 @@ import fr.neatmonster.nocheatplus.permissions.RegisteredPermission;
  *
  */
 public abstract class AbstractCommand<A> implements TabExecutor{
-    public static final String TAG = ChatColor.GRAY +""+ ChatColor.BOLD + "[" + ChatColor.RED + "NC+" + ChatColor.GRAY +""+ ChatColor.BOLD + "] " + ChatColor.GRAY;
+    public static final String TAG = String.valueOf(ChatColor.GRAY);
     public static final String CTAG = "[NoCheatPlus] ";
 
     public static final List<String> noTabChoices = Collections.unmodifiableList(new LinkedList<String>());
@@ -194,7 +194,7 @@ public abstract class AbstractCommand<A> implements TabExecutor{
             AbstractCommand<?> subCommand = subCommands.get(arg);
             if (subCommand != null){
                 if (!subCommand.testPermission(sender, command, alias, args)){
-                    sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "You don't have permission.");
+                    sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "你没有权限.");
                     return true;
                 }
                 final boolean res = subCommand.onCommand(sender, command, alias, args);

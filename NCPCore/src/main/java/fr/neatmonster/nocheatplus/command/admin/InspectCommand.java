@@ -54,7 +54,7 @@ public class InspectCommand extends BaseCommand {
                 args = new String[]{args[0], sender.getName()};
             } 
             else {
-                sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Please specify a player to inspect.");
+                sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "请指定一个玩家.");
                 return true;
             }
         }
@@ -73,7 +73,7 @@ public class InspectCommand extends BaseCommand {
         for (int i = 1; i < args.length; i++) {
             final Player player = DataManager.getPlayer(args[i].trim().toLowerCase());
             if (player == null) {
-                sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Not online: " + c3 +""+ args[i]);
+                sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "不在线: " + c3 +""+ args[i]);
             } 
             else {
                 sender.sendMessage(getInspectMessage(player, c1, c2, c3, cI));
@@ -91,104 +91,105 @@ public class InspectCommand extends BaseCommand {
         final PlayerMoveData thisMove = mData.playerMoves.getCurrentMove();
 
         // More spaghetti.
-        builder.append(TAG + c1 + "Status information for player: " + c3 + player.getName());
+        // TODO: Later through ViaVersion it might be useful to also add the client version.
+        builder.append(TAG + c1 + "关于玩家 " + c3 + player.getName() + c1+ " 的状态信息:");
         
-        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + cI + (pData.isBedrockPlayer() ? " Is a Bedrock player" : " Is a Java player") + c1 + ".");
+        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + cI + (pData.isBedrockPlayer() ? " 是一个基岩版玩家" : " 是一个Java版玩家") + c1 + ".");
 
-        builder.append("\n "+ c1 + "" + c2 + "•" + c1 +" Is playing with version " + pData.getClientVersion().getReleaseName() + "(" + pData.getClientVersionID() + ")");
+        builder.append("\n "+ c1 + "" + c2 + "•" + c1 +" 正在使用 " + pData.getClientVersionID() + " 协议版本进行游玩.");
 
         if (player.isOp()){
-            builder.append("\n "+ c1 + "" + c2 + "•"  + c1 + cI + " Is OP" + c1 + ".");
+            builder.append("\n "+ c1 + "" + c2 + "•"  + c1 + cI + " 是管理员" + c1 + ".");
         }
 
-        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + (player.isOnline() ? " Is currently online." : " Is offline."));
+        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + (player.isOnline() ? " 当前在线." : " 当前离线."));
         
-        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + (player.isValid() ? " Player is valid." : " Player is invalid."));
+        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + (player.isValid() ? " 是可操作玩家." : " 非操作玩家."));
 
-        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Current health: " + f1.format(BridgeHealth.getHealth(player)) + "/" + f1.format(BridgeHealth.getMaxHealth(player)));
+        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 当前血量: " + f1.format(BridgeHealth.getHealth(player)) + "/" + f1.format(BridgeHealth.getMaxHealth(player)));
 
-        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Current food level: " + player.getFoodLevel());
+        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 当前饱和度: " + player.getFoodLevel());
 
-        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Is in " + player.getGameMode() + " gamemode.");
+        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 是一个 " + player.getGameMode() + " 模式玩家.");
 
-        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + (mCC.assumeSprint ? " Is assumed to be sprinting." : " Assume sprint workaround disabled."));
+        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + (mCC.assumeSprint ? " 奔跑可用." : " 不可奔跑."));
 
-        builder.append("\n "+ c1 + "" + c2 + "•" + c1 +" FlySpeed: " + player.getFlySpeed());
+        builder.append("\n "+ c1 + "" + c2 + "•" + c1 +" 飞行速度: " + player.getFlySpeed());
 
-        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " WalkSpeed: " + player.getWalkSpeed());
+        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 行走速度: " + player.getWalkSpeed());
 
         if (thisMove.modelFlying != null) {
-            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Movement model for this move " + thisMove.modelFlying.getId().toString());
+            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 行走模型 " + thisMove.modelFlying.getId().toString());
         }
 
         if (player.getExp() > 0f) {
-            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Experience Lvl: " + f1.format(player.getExpToLevel()) + "(exp=" + f1.format(player.getExp()) + ")");
+            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 经验等级: " + f1.format(player.getExpToLevel()) + "(exp=" + f1.format(player.getExp()) + ")");
         }
 
         if (Bridge1_9.isGlidingWithElytra(player)) {
-            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Is gliding with elytra.");
+            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 鞘翅滑翔中.");
         }
 
         if (Bridge1_13.isRiptiding(player)) {
-            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Is riptiding." );
+            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + "  正在使用激流." );
         }
 
         if (Bridge1_13.isSwimming(player)) {
-            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Is swimming (1.13).");
+            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 正在游泳 (1.13).");
         }
         
         if (player.isSneaking()) {
-            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Is sneaking.");
+            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 正在潜行.");
         }
 
         if (player.isBlocking()) {
-            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Is blocking.");
+            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 手举盾牌.");
         }
 
         if (player.isSprinting()) {
-            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Is sprinting.");
+            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 正在疾跑.");
         }
 
         if (mData.isUsingItem) {
-            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Is using an item."); // TODO: Which item?
+            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 正在使用物品 "+player.getItemInUse().getType() +" .");
         }
 
         if (mData.lostSprintCount > 0) {
-            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Their sprint status has been lost for: " + mData.lostSprintCount + " ticks.");
+            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 疾跑状态失去: " + mData.lostSprintCount + " ticks.");
         }
 
         if (player.isInsideVehicle()) {
-            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Is riding a vehicle (" + player.getVehicle().getType() +") at " + locString(player.getVehicle().getLocation()));
+            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 正在驾驶载具 (" + player.getVehicle().getType() +") [" + locString(player.getVehicle().getLocation())+"]");
         }
 
         if (player.isDead()) {
-            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Is currently dead.");
+            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 当前已死亡.");
         }
 
         if (player.isFlying()) {
-            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Is currently flying.");
+            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 当前正在飞行.");
         }
 
         if (player.getAllowFlight()) {
-            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Is allowed to fly.");
+            builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 被允许飞行.");
         }
 
         // Potion effects.
         final Collection<PotionEffect> effects = player.getActivePotionEffects();
         if (!effects.isEmpty()) {
-            builder.append("\n "+ c1 + "" + c2 + "•" +c1+ "Has the following effects: ");
+            builder.append("\n "+ c1 + "" + c2 + "•" +c1+ "拥有以下药水效果: ");
             for (final PotionEffect effect : effects) {
-                builder.append(effect.getType() + " at level " + effect.getAmplifier() +", ");
+                builder.append(effect.getType() + " 等级 " + effect.getAmplifier() +", ");
             }
         }
         // Finally the block location.
         final Location loc = player.getLocation();
-        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " Position: " + locString(loc));
+        builder.append("\n "+ c1 + "" + c2 + "•" + c1 + " 位置: " + locString(loc));
         return builder.toString();
     }
 
     private static final String locString(Location loc) {
-        return loc.getWorld().getName() + " at " + loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ();
+        return loc.getWorld().getName() + "," + loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ();
     }
 
     /* (non-Javadoc)

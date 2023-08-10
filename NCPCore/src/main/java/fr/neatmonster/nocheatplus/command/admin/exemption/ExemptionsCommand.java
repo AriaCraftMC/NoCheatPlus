@@ -55,7 +55,7 @@ public class ExemptionsCommand extends BaseCommand {
         }
 
         if (args.length != 2) {
-            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Please specify a player.");
+            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "请指定一个玩家.");
             return true;
         } 
         String playerName = args[1].trim();
@@ -69,7 +69,7 @@ public class ExemptionsCommand extends BaseCommand {
         }
         final List<String> entries = new LinkedList<String>();
         if (id == null) {
-            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Not online nor a UUID: " + c3 +""+ playerName + c1 + " .");
+            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "玩家不在线(无效UUID): " + c3 +""+ playerName + c1 + " .");
             return true;
         } else {
             for (CheckType type : CheckType.values()){
@@ -79,11 +79,11 @@ public class ExemptionsCommand extends BaseCommand {
             }
         }
         if (entries.isEmpty()) {
-            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "No exemption entries available for " + c3 +""+ playerName + c1 + " .");
+            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "没有 " + c3 +""+ playerName + c1 + " 绕过的检测项目.");
         }
         else {
             // TODO: Compress entries ?
-            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "Exemptions for " + c3 +""+  playerName + c1 + ": " + c3 +""+ StringUtil.join(entries, ", "));
+            sender.sendMessage((sender instanceof Player ? TAG : CTAG) + "玩家 " + c3 +""+  playerName + c1 + " 绕过的检测项目: " + c3 +""+ StringUtil.join(entries, ", "));
         }
         return true;
     }
