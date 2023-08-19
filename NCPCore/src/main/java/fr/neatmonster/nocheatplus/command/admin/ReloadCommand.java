@@ -104,7 +104,11 @@ public class ReloadCommand extends BaseCommand {
 
         // Log reloading done.
         if (!sender.equals(Bukkit.getConsoleSender())) {
-            sender.sendMessage(ChatColor.GREEN + "配置文件已重载.");
+            if (ConfigManager.getConfigFile().getBoolean("cloud_config")){
+                sender.sendMessage(ChatColor.GREEN + "云配置文件已重载.");
+            }else{
+                sender.sendMessage(ChatColor.GREEN + "配置文件已重载.");
+            }
         }
         logManager.info(Streams.INIT, "配置文件已重载.");
         logManager.info(Streams.DEFAULT_FILE, StringUtil.join(VersionCommand.getVersionInfo(), "\n")); // Queued (!).

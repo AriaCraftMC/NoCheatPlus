@@ -44,7 +44,7 @@ public class DefaultConfig extends ConfigFile {
         final int cfMaxWorldY = ServerVersion.compareMinecraftVersion("1.18") >= 0 ? 200 : 128;
 
         // General.
-        set(ConfPaths.CLOUDCONFIG,false,785);
+        set(ConfPaths.CLOUDCONFIG,true,785);
         //set(ConfPaths.CLOUDLINK,"https://yourlink.here");
         set(ConfPaths.SAVEBACKCONFIG, true, 785);
 
