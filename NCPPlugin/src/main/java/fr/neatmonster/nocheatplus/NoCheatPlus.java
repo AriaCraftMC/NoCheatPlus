@@ -14,6 +14,7 @@
  */
 package fr.neatmonster.nocheatplus;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -36,6 +37,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
@@ -847,14 +849,20 @@ public class NoCheatPlus extends JavaPlugin implements NoCheatPlusAPI {
      */
     @Override
     public void onLoad() {
-        Bukkit.getLogger().info("[NoCheatPlus] onLoad: Early set up of static API, configuration, logging."); // Bukkit logger.
-        setupBasics();
+        Bukkit.getLogger().info("[NoCheatPlus] onLoadEvent: 及早设置静态应用程序接口、配置和日志。"); // Bukkit logger.
+        try {
+            setupBasics();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidConfigurationException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
      * Lazy initialization of basics (static API, configuration, logging).
      */
-    private void setupBasics() {
+    private void setupBasics() throws IOException, InvalidConfigurationException {
         // Ensure permissions are registered early.
         for (RegisteredPermission rp : Permissions.getPermissions()) {
             if (permissionRegistry.getPermissionInfo(rp.getId()) == null) {
@@ -882,8 +890,8 @@ public class NoCheatPlus extends JavaPlugin implements NoCheatPlusAPI {
             logManager = new BukkitLogManager(this);
             StaticLog.setStreamID(Streams.INIT);
             StaticLog.setUseLogManager(true);
-            logManager.info(Streams.INIT, "Logging system initialized.");
-            logManager.info(Streams.INIT, "Detected Minecraft version: " + ServerVersion.getMinecraftVersion());
+            logManager.info(Streams.INIT, "记录系统已初始化。");
+            logManager.info(Streams.INIT, "检测到的 Minecraft 版本: " + ServerVersion.getMinecraftVersion());
             genericInstanceRegistry.setLogger(
                     logManager, new IGetStreamId() {
                         @Override
@@ -919,7 +927,13 @@ public class NoCheatPlus extends JavaPlugin implements NoCheatPlusAPI {
         TickTask.setLocked(false);
 
         // Re-check basic setup (if onLoad gets skipped by some custom thing).
-        setupBasics();
+        try {
+            setupBasics();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidConfigurationException e) {
+            throw new RuntimeException(e);
+        }
         if (Bugs.shouldEnforceLocation()) {
             addFeatureTags("defaults", Arrays.asList("enforceLocation"));
         }
@@ -1096,7 +1110,7 @@ public class NoCheatPlus extends JavaPlugin implements NoCheatPlusAPI {
      * Actions to be done after enable of  all plugins. This aims at reloading mainly.
      */
     private void postEnable(final Player[] onlinePlayers) {
-        logManager.info(Streams.INIT, "Post-enable running...");
+        logManager.info(Streams.INIT, "启用后运行...");
         // Update permission registry internals for permissions preferred to be updated.
         // (By now checks should have noted what they want.)
         permissionRegistry.arrangePreferKeepUpdated();
@@ -1108,7 +1122,7 @@ public class NoCheatPlus extends JavaPlugin implements NoCheatPlusAPI {
                 setupCommandProtection();
             }
         } catch (Throwable t) {
-            logManager.severe(Streams.INIT, "Failed to apply command protection: " + t.getClass().getSimpleName());
+            logManager.severe(Streams.INIT, "应用命令保护失败: " + t.getClass().getSimpleName());
             logManager.severe(Streams.INIT, t);
         }
         // TODO: This should be a registered handler.
@@ -1119,10 +1133,10 @@ public class NoCheatPlus extends JavaPlugin implements NoCheatPlusAPI {
             }
         }
         if (onlinePlayers.length > 0) {
-            logManager.info(Streams.INIT, "Updated data for " + onlinePlayers.length + " players (post-enable).");
+            logManager.info(Streams.INIT, "更新数据 " + onlinePlayers.length + " 玩家（开服后）。");
         }
         // Finished.
-        logManager.info(Streams.INIT, "Post-enable finished.");
+        logManager.info(Streams.INIT, "启用后完成.");
         // Log version to file (queued).
         logManager.info(Streams.DEFAULT_FILE, StringUtil.join(VersionCommand.getVersionInfo(), "\n"));
     }

@@ -31,6 +31,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import fr.neatmonster.nocheatplus.logging.Streams;
 import fr.neatmonster.nocheatplus.utilities.HTTPUtils;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -163,7 +164,7 @@ public class ConfigManager {
                         PrintStream ps = new PrintStream(new FileOutputStream(globalFile));
                         ps.println(content);// 往文件里写入字符串
                         globalConfig.load(globalFile);
-                        StaticLog.logWarning("云端配置加载成功");
+                        StaticLog.logSevere("云端配置加载成功");
                     } catch (Exception e) {
                         globalConfig.setDefaults(defaultConfig);
                         globalConfig.options().copyDefaults(true);
@@ -268,7 +269,7 @@ public class ConfigManager {
      * configuration values.
      * 
      * @param globalConfig
-     * @param maxLines
+     * @param maxPaths
      *            Maximum number of configuration paths to include in the output
      *            - note that extra lines will always be included, for
      *            introduction and in the end some hints. A negative value means
