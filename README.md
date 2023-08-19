@@ -7,7 +7,7 @@ Updated-NoCheatPlus 是著名反作弊插件 NoCheatPlus 的延续，由 [NeatMo
 
 NoCheatPlus 试图执行 "vanilla Minecraft "机制，并防止玩家滥用 Minecraft 或其协议中的弱点，从而使您的服务器更加安全。NoCheatPlus 分为不同部分，执行各种检查以测试玩家的行为，涵盖范围很广，包括飞行和加速、战斗黑客、快速破块和核弹攻击、库存黑客、聊天垃圾和其他类型的恶意行为。
 
-此项目由[nuym](https//github.com/nuym)大力驱动，为 AriaCraft 服务器环境独特优化，遵守 GPL-3.0 进行开发，你可以在自己的服务器使用本项目，但请不要更改 NoCheatPlus 贡献者（包括我）在内的著作权，不提供任何技术支持。
+此项目由[nuym](https://github.com/nuym)大力驱动，为 AriaCraft 服务器环境独特优化，遵守 GPL-3.0 进行开发，你可以在自己的服务器使用本项目，但请不要更改 NoCheatPlus 贡献者（包括我）在内的著作权，不提供任何技术支持。
 
 
 DMCA
