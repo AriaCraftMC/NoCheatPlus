@@ -14,6 +14,7 @@
  */
 package fr.neatmonster.nocheatplus.command.admin;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.neatmonster.nocheatplus.NCPAPIProvider;
@@ -51,7 +53,13 @@ public class ReloadCommand extends BaseCommand {
             String[] args) {
         if (args.length != 1) 
             return false;
-        handleReloadCommand(sender);
+        try {
+            handleReloadCommand(sender);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidConfigurationException e) {
+            throw new RuntimeException(e);
+        }
         return true;
     }
 
@@ -62,7 +70,7 @@ public class ReloadCommand extends BaseCommand {
      *            the sender
      * @return true, if successful
      */
-    private void handleReloadCommand(final CommandSender sender) {
+    private void handleReloadCommand(final CommandSender sender) throws IOException, InvalidConfigurationException {
         final LogManager logManager = NCPAPIProvider.getNoCheatPlusAPI().getLogManager();
         if (!sender.equals(Bukkit.getConsoleSender())) {
             sender.sendMessage(ChatColor.GREEN + "正在重载配置文件...");

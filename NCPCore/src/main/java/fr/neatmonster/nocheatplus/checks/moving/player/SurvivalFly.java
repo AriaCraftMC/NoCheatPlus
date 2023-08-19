@@ -677,6 +677,7 @@ public class SurvivalFly extends Check {
         if (debug && tags.size() > tagsLength) {
             logPostViolationTags(player);
         }
+        
         // Nothing to do, newTo (MovingListener) stays null
         return null;
     }

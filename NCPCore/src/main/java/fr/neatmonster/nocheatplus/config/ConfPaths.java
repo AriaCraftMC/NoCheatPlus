@@ -63,6 +63,8 @@ public abstract class ConfPaths {
 
     // General.
     public static final String SAVEBACKCONFIG                            = "savebackconfig";
+    public static final String CLOUDCONFIG                               = "cloud_config";
+   //public static final String CLOUDLINK                                 = "cloud_link";
 
     // Configuration version.
     /*
