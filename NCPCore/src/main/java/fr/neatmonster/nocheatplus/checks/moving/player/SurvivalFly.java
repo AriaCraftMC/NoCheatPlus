@@ -2478,6 +2478,14 @@ public class SurvivalFly extends Check {
             vd.setParameter(ParameterName.LOCATION_TO, String.format(Locale.US, "%.2f, %.2f, %.2f", to.getX(), to.getY(), to.getZ()));
             vd.setParameter(ParameterName.DISTANCE, String.format(Locale.US, "%.2f", TrigUtil.distance(from, to)));
             vd.setParameter(ParameterName.TAGS, StringUtil.join(tags, "+"));
+
+            // 这段代码用来判断是否为卡顿或者其他反作弊造成的不兼容回弹，
+            // 移动范围在2block内
+            // 就判定为误判
+
+            if (TrigUtil.distance(from, to)<2){
+                return null;
+            }
         }
         // Some resetting is done in MovingListener.
         if (executeActions(vd).willCancel()) {

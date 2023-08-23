@@ -263,7 +263,7 @@ public final class NCPHookManager {
      *            the hook
      */
     private static final void logHookAdded(final NCPHook hook) {
-        NCPAPIProvider.getNoCheatPlusAPI().getLogManager().info(Streams.STATUS, "添加挂钩: " + getHookDescription(hook) + ".");
+        NCPAPIProvider.getNoCheatPlusAPI().getLogManager().info(Streams.STATUS, "添加补丁: " + getHookDescription(hook) + ".");
     }
 
     /**
@@ -304,7 +304,7 @@ public final class NCPHookManager {
      *            the hook
      */
     private static final void logHookRemoved(final NCPHook hook) {
-        NCPAPIProvider.getNoCheatPlusAPI().getLogManager().info(Streams.STATUS, "取消挂钩: " + getHookDescription(hook) + ".");
+        NCPAPIProvider.getNoCheatPlusAPI().getLogManager().info(Streams.STATUS, "取消补丁: " + getHookDescription(hook) + ".");
     }
 
     /**

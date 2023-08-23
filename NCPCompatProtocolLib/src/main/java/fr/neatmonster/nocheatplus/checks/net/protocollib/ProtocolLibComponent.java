@@ -148,11 +148,11 @@ public class ProtocolLibComponent implements IDisableListener, INotifyReload, Jo
             for (PacketAdapter adapter : registeredPacketAdapters) {
                 names.add(adapter.getClass().getSimpleName());
             }
-            StaticLog.logInfo("数据包挂钩: " + StringUtil.join(names, " | "));
+            StaticLog.logInfo("数据包补丁: " + StringUtil.join(names, " | "));
             NCPAPIProvider.getNoCheatPlusAPI().addFeatureTags("packet-listeners", names);
         } 
         else {
-            StaticLog.logInfo("没有激活的数据包挂钩.");
+            StaticLog.logInfo("没有激活的数据包补丁.");
         }
     }
 
@@ -168,7 +168,7 @@ public class ProtocolLibComponent implements IDisableListener, INotifyReload, Jo
         } catch (ClassCastException e) {
             t = e;
         }
-        StaticLog.logWarning("无法注册数据包挂钩: " + name);
+        StaticLog.logWarning("无法注册数据包补丁: " + name);
         StaticLog.logWarning(t);
     }
 
@@ -179,7 +179,7 @@ public class ProtocolLibComponent implements IDisableListener, INotifyReload, Jo
             ProtocolLibrary.getProtocolManager().addPacketListener(adapter);
             registeredPacketAdapters.add(adapter);
         } catch (Throwable t) {
-            StaticLog.logWarning("无法注册数据包挂钩: " + clazz.getSimpleName());
+            StaticLog.logWarning("无法注册数据包补丁: " + clazz.getSimpleName());
             StaticLog.logWarning(t);
             if (t.getCause() != null) {
                 StaticLog.logWarning(t.getCause());
@@ -207,7 +207,7 @@ public class ProtocolLibComponent implements IDisableListener, INotifyReload, Jo
                 protocolManager.removePacketListener(adapter);
                 api.removeComponent(adapter); // Bit heavy, but consistent.
             } catch (Throwable t) {
-                StaticLog.logWarning("无法注册数据包挂钩: " + adapter.getClass().getName());
+                StaticLog.logWarning("无法注册数据包补丁: " + adapter.getClass().getName());
             }// TODO Auto-generated method stub
 
         }
@@ -226,9 +226,9 @@ public class ProtocolLibComponent implements IDisableListener, INotifyReload, Jo
                 names.add(adaptern.getClass().getSimpleName());
             }
             api.setFeatureTags("packet-listeners", names);
-            StaticLog.logInfo("取消数据包挂钩:" + adapter.getClass().getName());
+            StaticLog.logInfo("取消数据包补丁:" + adapter.getClass().getName());
         } catch (Throwable t) {
-            StaticLog.logWarning("无法注册数据包挂钩: " + adapter.getClass().getName());
+            StaticLog.logWarning("无法注册数据包补丁: " + adapter.getClass().getName());
         }
     }
 

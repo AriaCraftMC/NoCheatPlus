@@ -71,15 +71,13 @@ public class VersionCommand extends BaseCommand {
 
         final List<String> lines = new LinkedList<String>();
         final MCAccess mcAccess = NCPAPIProvider.getNoCheatPlusAPI().getGenericInstance(MCAccess.class);
-        lines.addAll(Arrays.asList(new String[]{
-                c3 +""+ c2 + "»版本信息«" + c1,
+        lines.addAll(Arrays.asList(c3 +""+ c2 + "»版本信息«" + c1,
                 c5 +""+ c2 + "服务端核心:" + c1,
                 c1 + alt(Bukkit.getServer().getVersion()),
                 c1 +""+ c7 + "服务端版本: " + c1 + alt(ServerVersion.getMinecraftVersion()),
                 c5 +""+ c2 + "NoCheatPlus:" + c1,
                 c1 +""+ c7 + "版本: "+ c1 + alt(Bukkit.getPluginManager().getPlugin("NoCheatPlus").getDescription().getVersion()),
-                c1 +""+ c7 +  "客户端兼容版本: " + c1 + alt(mcAccess.getMCVersion() + " / " + mcAccess.getServerVersionTag()),
-        }));
+                c1 +""+ c7 +  "客户端兼容版本: " + c1 + alt(mcAccess.getMCVersion() + " / " + mcAccess.getServerVersionTag())));
 
         final Map<String, Set<String>> featureTags = NCPAPIProvider.getNoCheatPlusAPI().getAllFeatureTags();
         if (!featureTags.isEmpty()) {
@@ -101,11 +99,11 @@ public class VersionCommand extends BaseCommand {
                 fullNames.add(alt(hook.getHookName() + " " + hook.getHookVersion()));
             }
             Collections.sort(fullNames, String.CASE_INSENSITIVE_ORDER);
-            lines.add(c5 +""+ c2 + "挂钩:\n" + c1 + StringUtil.join(fullNames, c6 + ", " + c1));
+            lines.add(c5 +""+ c2 + "补丁:\n" + c1 + StringUtil.join(fullNames, c6 + ", " + c1));
         }
 
         final List<String> relatedPlugins = new LinkedList<String>();
-        for (final String name : new String[]{"CompatNoCheatPlus", "ProtocolLib", "ViaVersion", "ProtocolSupport", "PNCP", "NTAC"}) {
+        for (final String name : new String[]{"CompatNoCheatPlus", "ProtocolLib", "ViaVersion", "ProtocolSupport", "PNCP", "NTAC" , "AriaAC"}) {
             Plugin plugin = Bukkit.getPluginManager().getPlugin(name);
             if (plugin != null) {
                 relatedPlugins.add(alt(plugin.getDescription().getFullName()));
